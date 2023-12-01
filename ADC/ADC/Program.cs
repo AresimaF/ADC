@@ -8,6 +8,8 @@ namespace ADC
 {
     internal static class Program
     {
+        public static MainScreen mainScreen { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,7 @@ namespace ADC
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(mainScreen = new MainScreen());
         }
     }
 }
