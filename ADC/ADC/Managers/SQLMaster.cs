@@ -38,9 +38,10 @@ namespace ADC.Managers
                 sqldb.Open();
                 sqldb.Close();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                throw new Exception("Could not connect to the database. Please ensure connection information is correct.");
+                builder.CheckDatabase();
+                //throw new Exception("Could not connect to the database. Please ensure connection information is correct.");
             }
         }
 

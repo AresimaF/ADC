@@ -1,4 +1,5 @@
 ﻿using ADC.Managers;
+using ADC.Screens.ConnectionScreen;
 using ADC.Screens.Error;
 using ADC.Screens.SplashScreen;
 using System;
@@ -59,7 +60,10 @@ namespace ADC
         
         private static void InitialSetup()
         {
-            iniFile.Write("ConnectionString", @"Data Source=.\SQLExpress;Initial Catalog=ADCDB;User ID=sa;Password=password");
+            ConnectionScreen connectionScreen = new ConnectionScreen();
+            connectionScreen.ShowDialog();
+            
+            
         }
 
         public static void ErrorHandler(Exception e)
@@ -71,8 +75,6 @@ namespace ADC
         static void FatalErrorHandler(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
-
-            
 
             ErrorScreen err = new ErrorScreen(e, true);
             err.ShowDialog();

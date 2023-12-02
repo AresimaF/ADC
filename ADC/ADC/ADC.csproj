@@ -366,6 +366,12 @@
     <Compile Include="Archive\UserGrimoire.cs" />
     <Compile Include="Crafters\DatabaseCrafter.cs" />
     <Compile Include="Managers\IniMaster.cs" />
+    <Compile Include="Screens\ConnectionScreen\ConnectionScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ConnectionScreen\ConnectionScreen.Designer.cs">
+      <DependentUpon>ConnectionScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Error\ErrorScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +403,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Screens\ConnectionScreen\ConnectionScreen.resx">
+      <DependentUpon>ConnectionScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Error\ErrorScreen.resx">
       <DependentUpon>ErrorScreen.cs</DependentUpon>
     </EmbeddedResource>

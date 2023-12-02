@@ -14,9 +14,29 @@ namespace ADC.Crafters
     internal class DatabaseCrafter
     {
         SQLMaster sql;
-       public DatabaseCrafter(SQLMaster parent)
+        SqlConnection db;
+        string connectionString = Program.iniFile.Read("ConnectionString");
+
+        public DatabaseCrafter(SQLMaster parent)
         {
             sql = parent;
+            connectionString = connectionString.Replace("Initial Catalog=ADCDB;", "");
+            db = new SqlConnection(connectionString);
+        }
+
+        public void CheckDatabase()
+        {
+            try
+            {
+                db.Open();
+                db.Close();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+
+
         }
     }
 }
