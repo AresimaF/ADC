@@ -11,12 +11,15 @@ using ADC.Crafters;
 using ADC.Archive;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using System.Diagnostics;
 
 namespace ADC.Managers
 {
     internal class SQLMaster
     {
         DatabaseCrafter builder;
+
+        SqlConnection sqldb;
 
         string databaseName = "ADCDB";
         string databasePrefix { get { return databaseName.ToLower(); } }
@@ -27,28 +30,40 @@ namespace ADC.Managers
         public SQLMaster()
         {
             builder = new DatabaseCrafter(this);
+
+            try
+            {
+                sqldb = new SqlConnection(connectionString);
+
+                sqldb.Open();
+                sqldb.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not connect to the database. Please ensure connection information is correct.");
+            }
         }
 
         //Modular Create New Entry
-        public bool Create(string Table, object Entry)
+        public bool Create<T>(string Table, T Entry)
         {
             return true;
         }
 
         //Modular Update Entry
-        public bool Update(string Table, object Entry)
+        public bool Update<T>(string Table, T Entry)
         {
             return true;
         }
 
         //Modular Read Entry with EQUALS
-        public object ReadEqual<T> (string Table, string key, T value)
+        public object Read<T> (string Table, string key, T value)
         {
             return null;
         }
 
         //Modular Delete Entry with EQUALS
-        public bool DeleteEqual<T>(string Table, string key, T value)
+        public bool Delete<T>(string Table, string key, T value)
         {
             return true;
         }

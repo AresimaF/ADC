@@ -29,8 +29,9 @@ namespace ADC
         [STAThread]
         static void Main()
         {
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ErrorHandler);
-
+            
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(FatalErrorHandler);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.Automatic);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -61,12 +62,19 @@ namespace ADC
             iniFile.Write("ConnectionString", @"Data Source=.\SQLExpress;Initial Catalog=ADCDB;User ID=sa;Password=password");
         }
 
-        static void ErrorHandler(object sender, UnhandledExceptionEventArgs args)
+        public static void ErrorHandler(Exception e)
+        {
+            ErrorScreen err = new ErrorScreen(e);
+            err.ShowDialog();
+        }
+
+        static void FatalErrorHandler(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
-            Console.WriteLine("MyHandler caught : " + e.Message);
 
-            ErrorScreen err = new ErrorScreen(e);
+            
+
+            ErrorScreen err = new ErrorScreen(e, true);
             err.ShowDialog();
         }
 

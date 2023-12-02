@@ -41,6 +41,7 @@
             this.buttonContinue.TabIndex = 0;
             this.buttonContinue.Text = "Continue";
             this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonContinue_MouseClick);
             // 
             // buttonSendReport
             // 

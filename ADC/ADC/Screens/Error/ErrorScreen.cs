@@ -12,11 +12,21 @@ namespace ADC.Screens.Error
 {
     public partial class ErrorScreen : Form
     {
-        public ErrorScreen(Exception e)
+        string[] windowTitles = { "Error", "Fatal Error" };
+
+        public ErrorScreen(Exception e, bool isFatal = false)
         {
             InitializeComponent();
 
+            Text = (isFatal ? windowTitles[1] : windowTitles[0]);
             textErrorMessage.Text = e.Message;
+
+            
+        }
+
+        private void buttonContinue_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
         }
     }
 }
