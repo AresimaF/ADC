@@ -372,10 +372,10 @@
     <Compile Include="Screens\ConnectionScreen\ConnectionScreen.Designer.cs">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Error\ErrorScreen.cs">
+    <Compile Include="Screens\SystemScreens\Error\ErrorScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Error\ErrorScreen.Designer.cs">
+    <Compile Include="Screens\SystemScreens\Error\ErrorScreen.Designer.cs">
       <DependentUpon>ErrorScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\MainScreen\MainScreen.cs">
@@ -394,6 +394,12 @@
     <Compile Include="Screens\SplashScreen\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\SystemScreens\Loading\Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\SystemScreens\Loading\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -406,11 +412,14 @@
     <EmbeddedResource Include="Screens\ConnectionScreen\ConnectionScreen.resx">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Error\ErrorScreen.resx">
+    <EmbeddedResource Include="Screens\SystemScreens\Error\ErrorScreen.resx">
       <DependentUpon>ErrorScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\SplashScreen\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\SystemScreens\Loading\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

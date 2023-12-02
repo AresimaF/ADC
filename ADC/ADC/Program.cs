@@ -2,6 +2,7 @@
 using ADC.Screens.ConnectionScreen;
 using ADC.Screens.Error;
 using ADC.Screens.SplashScreen;
+using ADC.Screens.SystemScreens.Loading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ADC
     {
         public static MainScreen mainScreen { get; private set; }
         public static SplashScreen splashScreen { get; private set; }
+        public static Loading loadingScreen { get; private set; }
         public static IniMaster iniFile { get; private set; }
         public static SQLMaster sqlMaster { get; private set; }
         public static CryptMaster cryptMaster { get; private set; }
@@ -38,6 +40,8 @@ namespace ADC
             Application.SetCompatibleTextRenderingDefault(false);
             splashScreen = new SplashScreen();
             splashScreen.Show();
+
+            loadingScreen = new Loading();
 
             //programTime.Tick += new EventHandler(TimerEventProcessor);
             //programTime.Interval = 1000;

@@ -26,7 +26,7 @@ namespace ADC.Screens.ConnectionScreen
         private void buttonSave_Click(object sender, EventArgs e)
         {
             //Program.iniFile.Write("ConnectionString", @"Data Source=.\SQLExpress;Initial Catalog=ADCDB;User ID=sa;Password=password");
-            Program.iniFile.Write("ConnectionString", @"Data Source=" + textDataSource.Text + ";Initial Catalog=ADCDB;User ID=" + textUserID.Text + ";Password=" + textPassword.Text);
+            Program.iniFile.Write("ConnectionString", @"Data Source=" + textDataSource.Text + ";Initial Catalog=ADCDB;User ID=" + textUserID.Text + ";Password=" + textPassword.Text + ";TrustServerCertificate=True");
             Close();
         }
     }
