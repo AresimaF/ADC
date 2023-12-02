@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace ADC.Managers
 {
     internal class CryptMaster    {
-        public string standardSaltHash(string toHash)
+        public string hashPassword(string toHash)
         {
-            var salt = BCrypt.Net.BCrypt.GenerateSalt(4);
+            var salt = BCrypt.Net.BCrypt.GenerateSalt(6);
             return BCrypt.Net.BCrypt.HashPassword(toHash, salt);
         }
 
