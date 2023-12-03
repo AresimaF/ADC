@@ -83,7 +83,7 @@ namespace ADC.Crafters
 
             Program.loadingScreen.SetProgress(90);
 
-            SeedUser();
+            //SeedUser();
 
             Program.loadingScreen.SetProgress(100);
             Program.loadingScreen.Close();
