@@ -1,4 +1,6 @@
-﻿using ADC.Managers;
+﻿using ADC.Archive;
+using ADC.Managers;
+using ADC.Screens.NewUserScreen;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -61,6 +63,12 @@ namespace ADC.Crafters
             Database db = new Database(server, "ADCDB");
             db.Create();
 
+            Program.loadingScreen.SetProgress(5);
+
+            System.Threading.Thread.Sleep(500);
+
+            sql.ConnectToDatabase();
+
             Program.loadingScreen.SetProgress(10);
 
             GenerateBlueprintTable();
@@ -107,7 +115,18 @@ namespace ADC.Crafters
 
             tb.Create();
 
-            //TODO: Add seed roles
+            RoleGrimoire toAdd = new RoleGrimoire();
+            
+            toAdd.Name = "Admin";
+            toAdd.CreatedBy = "Default";
+
+            sql.Create("Roles", toAdd);
+
+            toAdd.Name = "User";
+            toAdd.CreatedBy = "Default";
+
+            sql.Create("Roles", toAdd);
+
         }
 
         public void GenerateUsersTable()
@@ -204,7 +223,8 @@ namespace ADC.Crafters
 
         public void SeedUser()
         {
-
+            NewUserScreen seedScreen = new NewUserScreen(true, sql);
+            seedScreen.ShowDialog();
         }
     }
 }

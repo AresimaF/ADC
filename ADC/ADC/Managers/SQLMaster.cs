@@ -17,7 +17,7 @@ using System.Reflection;
 
 namespace ADC.Managers
 {
-    internal class SQLMaster
+    public class SQLMaster
     {
         DatabaseCrafter builder;
 
@@ -35,7 +35,7 @@ namespace ADC.Managers
 
             try
             {
-                sqldb = new SqlConnection(connectionString);
+                ConnectToDatabase();
 
                 sqldb.Open();
                 sqldb.Close();
@@ -43,8 +43,15 @@ namespace ADC.Managers
             catch (SqlException e)
             {
                 builder.CheckDatabase();
+                
                 //throw new Exception("Could not connect to the database. Please ensure connection information is correct.");
             }
+        }
+
+        public async void ConnectToDatabase()
+        {
+            sqldb = new SqlConnection(connectionString);
+
         }
 
         //Modular Create New Entry
@@ -58,6 +65,10 @@ namespace ADC.Managers
 
             foreach (PropertyInfo property in propertyList)
             {
+                if (property.Name == "ID")
+                {
+                    continue;
+                }
                 columns.Add(property.Name);
                 properties.Add("@" + property.Name);
             }
@@ -67,7 +78,9 @@ namespace ADC.Managers
 
             var insertString = "INSERT INTO adcdb" + Table + " " + columnString + " VALUES " + propertiesString;
 
+            sqldb.Open();
             int rowsAffected = sqldb.Execute(insertString, Entry);
+            sqldb.Close();
 
             return rowsAffected;
         }
@@ -93,13 +106,12 @@ namespace ADC.Managers
         //Return Full List
         public List<T> List<T>(string Table, int resultCount = 1000)
         {
-            var parameters = new { queryTable = Table , resultCount = resultCount};
             
             sqldb.Open();
-            var toReturn = sqldb.Query("SELECT @resultCount FROM @queryTable", parameters).ToList();
+            var toReturn = sqldb.Query<T>("SELECT * FROM " + Table).ToList();
             sqldb.Close();
             
-            return toReturn.Cast<T>().ToList();
+            return toReturn;
         }
 
     }

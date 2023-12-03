@@ -12,5 +12,13 @@ namespace ADC.Archive
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+
+        public RoleGrimoire()
+        {
+            ID = 0;
+            Name = "";
+            CreatedDate = DateTime.Now;
+            CreatedBy = "";
+        }
     }
 }

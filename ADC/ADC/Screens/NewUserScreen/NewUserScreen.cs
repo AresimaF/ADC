@@ -1,4 +1,5 @@
 ﻿using ADC.Archive;
+using ADC.Managers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +16,31 @@ namespace ADC.Screens.NewUserScreen
     {
         UserGrimoire currentUser;
         List<RoleGrimoire> roles;
+        SQLMaster sql;
 
         public NewUserScreen(bool isSeedUser)
         {
             InitializeComponent();
+
+            sql = Program.sqlMaster;
+
+            PopulateRoleList();
+
+            if (isSeedUser)
+            {
+                SeedUser();
+            }
+            else
+            {
+                NormalUser();
+            }
+        }
+
+        public NewUserScreen(bool isSeedUser, SQLMaster inputSQL)
+        {
+            InitializeComponent();
+
+            sql = inputSQL;
 
             PopulateRoleList();
 
@@ -34,7 +56,7 @@ namespace ADC.Screens.NewUserScreen
 
         public void PopulateRoleList()
         {
-            roles = Program.sqlMaster.List<RoleGrimoire>("adcdbRoles");
+            roles = sql.List<RoleGrimoire>("adcdbRoles");
             listRoles.Items.Clear();
 
             foreach (RoleGrimoire role in roles)
@@ -42,6 +64,7 @@ namespace ADC.Screens.NewUserScreen
                 listRoles.Items.Add(role.Name);
             }
 
+            listRoles.Refresh();
         }
 
         private void SeedUser()
@@ -100,14 +123,41 @@ namespace ADC.Screens.NewUserScreen
             }
         }
 
+        private void HashPassword()
+        {
+            currentUser.Password = Program.cryptMaster.hashPassword(currentUser.Password); 
+        }
+
         private void buttonCreateUser_Click(object sender, EventArgs e)
         {
-            currentUser.Roles = listRoles.CheckedItems.ToString();
+            
 
-            int x = 0;
+            List<string> userRoles = new List<string>();
+
+            foreach (object item in listRoles.CheckedItems)
+            {
+                userRoles.Add(item.ToString());
+            }
+
+            int rowsAffected = sql.Create<UserGrimoire>("Users", currentUser);
+
+            if (rowsAffected != 1)
+            {
+                Program.ErrorHandler(new Exception("Error creating user. Rows Affected: " + rowsAffected.ToString()));
+            }
+            else
+            {
+                ClearAndClose();
+            }
+            
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            ClearAndClose();
+        }
+
+        private void ClearAndClose()
         {
             currentUser = new UserGrimoire();
 
