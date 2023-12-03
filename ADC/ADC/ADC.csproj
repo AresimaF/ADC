@@ -362,7 +362,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archive\EntryGrimoire.cs" />
+    <Compile Include="Archive\RoleGrimoire.cs" />
     <Compile Include="Archive\UserGrimoire.cs" />
     <Compile Include="Crafters\DatabaseCrafter.cs" />
     <Compile Include="Managers\IniMaster.cs" />
@@ -371,6 +371,12 @@
     </Compile>
     <Compile Include="Screens\ConnectionScreen\ConnectionScreen.Designer.cs">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\NewUserScreen\NewUserScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\NewUserScreen\NewUserScreen.Designer.cs">
+      <DependentUpon>NewUserScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\SystemScreens\Error\ErrorScreen.cs">
       <SubType>Form</SubType>
@@ -411,6 +417,9 @@
     </Compile>
     <EmbeddedResource Include="Screens\ConnectionScreen\ConnectionScreen.resx">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\NewUserScreen\NewUserScreen.resx">
+      <DependentUpon>NewUserScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\SystemScreens\Error\ErrorScreen.resx">
       <DependentUpon>ErrorScreen.cs</DependentUpon>
