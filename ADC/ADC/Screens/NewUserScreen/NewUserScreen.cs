@@ -69,6 +69,8 @@ namespace ADC.Screens.NewUserScreen
 
         private void SeedUser()
         {
+            ControlBox = false;
+            
             currentUser = new UserGrimoire();
 
             currentUser.ID = 0;
@@ -91,6 +93,8 @@ namespace ADC.Screens.NewUserScreen
 
         private void NormalUser()
         {
+            ControlBox = true;
+            
             currentUser = new UserGrimoire();
 
             buttonCancel.Enabled = false;
@@ -130,7 +134,7 @@ namespace ADC.Screens.NewUserScreen
 
         private void buttonCreateUser_Click(object sender, EventArgs e)
         {
-            
+            HashPassword();
 
             List<string> userRoles = new List<string>();
 

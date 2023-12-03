@@ -92,13 +92,19 @@ namespace ADC.Managers
         }
 
         //Modular Read Entry with EQUALS
-        public object Read<T> (string Table, string key, T value)
+        public List<T> Read<T> (string Table, string key, object value)
         {
-            return null;
+            var parameters = new { Key = key, Value = value, Table = Table };
+
+            string queryString = @"SELECT * FROM " + Table + " WHERE " + key + " = @Value";
+
+            var toReturn = sqldb.Query<T>(queryString, parameters).ToList();
+
+            return toReturn;
         }
 
         //Modular Delete Entry with EQUALS
-        public bool Delete<T>(string Table, string key, T value)
+        public bool Delete<T>(string Table, string key, object value)
         {
             return true;
         }

@@ -372,6 +372,12 @@
     <Compile Include="Screens\ConnectionScreen\ConnectionScreen.Designer.cs">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\LoginScreen\LoginScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\LoginScreen\LoginScreen.Designer.cs">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\NewUserScreen\NewUserScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -417,6 +423,12 @@
     </Compile>
     <EmbeddedResource Include="Screens\ConnectionScreen\ConnectionScreen.resx">
       <DependentUpon>ConnectionScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\LoginScreen\LoginScreen.resx">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\MainScreen\MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\NewUserScreen\NewUserScreen.resx">
       <DependentUpon>NewUserScreen.cs</DependentUpon>

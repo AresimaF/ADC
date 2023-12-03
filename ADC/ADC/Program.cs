@@ -1,6 +1,8 @@
-﻿using ADC.Managers;
+﻿using ADC.Archive;
+using ADC.Managers;
 using ADC.Screens.ConnectionScreen;
 using ADC.Screens.Error;
+using ADC.Screens.LoginScreen;
 using ADC.Screens.SplashScreen;
 using ADC.Screens.SystemScreens.Loading;
 using System;
@@ -15,12 +17,15 @@ namespace ADC
 {
     internal static class Program
     {
+        public static LoginScreen loginScreen { get; private set; }
         public static MainScreen mainScreen { get; private set; }
         public static SplashScreen splashScreen { get; private set; }
         public static Loading loadingScreen { get; private set; }
         public static IniMaster iniFile { get; private set; }
         public static SQLMaster sqlMaster { get; private set; }
         public static CryptMaster cryptMaster { get; private set; }
+
+        public static UserGrimoire LoggedInUser { get; set; }
 
         //static System.Windows.Forms.Timer programTime = new System.Windows.Forms.Timer();
         //public static double programTicks = 0;
@@ -59,7 +64,19 @@ namespace ADC
             sqlMaster = new SQLMaster();
 
             splashScreen.Hide();
-            Application.Run(mainScreen = new MainScreen());
+
+            loginScreen = new LoginScreen();
+            loginScreen.ShowDialog();
+
+            if (LoggedInUser is null || LoggedInUser.Username == "Thane Doe")
+            {
+                Environment.Exit(0);
+            }else
+            {
+                Application.Run(mainScreen = new MainScreen());
+            }
+
+            
         }
         
         private static void InitialSetup()
