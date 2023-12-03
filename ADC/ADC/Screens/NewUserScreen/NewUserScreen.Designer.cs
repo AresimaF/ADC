@@ -36,10 +36,10 @@
             this.textEmployeeID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textName = new System.Windows.Forms.TextBox();
-            this.listRoles = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonCreateUser = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.listRoles = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // textUsername
@@ -106,15 +106,6 @@
             this.textName.Size = new System.Drawing.Size(178, 20);
             this.textName.TabIndex = 4;
             // 
-            // listRoles
-            // 
-            this.listRoles.FormattingEnabled = true;
-            this.listRoles.Location = new System.Drawing.Point(228, 46);
-            this.listRoles.Name = "listRoles";
-            this.listRoles.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listRoles.Size = new System.Drawing.Size(178, 173);
-            this.listRoles.TabIndex = 8;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -132,6 +123,7 @@
             this.buttonCreateUser.TabIndex = 10;
             this.buttonCreateUser.Text = "Create User";
             this.buttonCreateUser.UseVisualStyleBackColor = true;
+            this.buttonCreateUser.Click += new System.EventHandler(this.buttonCreateUser_Click);
             // 
             // buttonCancel
             // 
@@ -141,16 +133,25 @@
             this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // listRoles
+            // 
+            this.listRoles.FormattingEnabled = true;
+            this.listRoles.Location = new System.Drawing.Point(228, 46);
+            this.listRoles.Name = "listRoles";
+            this.listRoles.Size = new System.Drawing.Size(168, 169);
+            this.listRoles.TabIndex = 12;
             // 
             // NewUserScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(438, 313);
+            this.Controls.Add(this.listRoles);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCreateUser);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listRoles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textEmployeeID);
             this.Controls.Add(this.label4);
@@ -177,9 +178,9 @@
         private System.Windows.Forms.TextBox textEmployeeID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textName;
-        private System.Windows.Forms.ListBox listRoles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonCreateUser;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.CheckedListBox listRoles;
     }
 }

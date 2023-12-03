@@ -14,6 +14,8 @@ namespace ADC.Screens.NewUserScreen
     public partial class NewUserScreen : Form
     {
         UserGrimoire currentUser;
+        List<RoleGrimoire> roles;
+
         public NewUserScreen(bool isSeedUser)
         {
             InitializeComponent();
@@ -32,6 +34,13 @@ namespace ADC.Screens.NewUserScreen
 
         public void PopulateRoleList()
         {
+            roles = Program.sqlMaster.List<RoleGrimoire>("adcdbRoles");
+            listRoles.Items.Clear();
+
+            foreach (RoleGrimoire role in roles)
+            {
+                listRoles.Items.Add(role.Name);
+            }
 
         }
 
@@ -78,6 +87,33 @@ namespace ADC.Screens.NewUserScreen
             textEmployeeID.Text = currentUser.EmployeeID;
 
             //Load roles here
+            for (int i = 0; i <= (listRoles.Items.Count - 1); i++)
+            {
+                if (currentUser.Roles.Contains(listRoles.Items[i].ToString()))
+                {
+                    listRoles.SetItemChecked(i, true);
+                }
+                else
+                {
+                    listRoles.SetItemChecked(i, false);
+                }
+            }
+        }
+
+        private void buttonCreateUser_Click(object sender, EventArgs e)
+        {
+            currentUser.Roles = listRoles.CheckedItems.ToString();
+
+            int x = 0;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            currentUser = new UserGrimoire();
+
+            listRoles.Items.Clear();
+
+            this.Close();
         }
     }
 }
