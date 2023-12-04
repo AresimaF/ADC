@@ -48,7 +48,7 @@ namespace ADC.Screens.LoginScreen
         {
 
          
-            List<UserGrimoire> userList = Program.sqlMaster.Read<UserGrimoire>("adcdbUsers", "Username", textUsername.Text);
+            List<UserGrimoire> userList = Program.sqlMaster.Read<UserGrimoire>("Users", "Username", textUsername.Text);
             UserGrimoire checkAgainst;
 
             if (userList.Count == 0)
@@ -64,6 +64,13 @@ namespace ADC.Screens.LoginScreen
             if (Program.cryptMaster.verifyPassword(textPassword.Text, checkAgainst.Password) == true)
             {
                 Program.LoggedInUser = checkAgainst;
+
+                if (Program.LoggedInUser.NewPasswordRequired)
+                {
+                    var newPassword = new NewPasswordScreen.NewPasswordScreen(true);
+                    newPassword.ShowDialog();
+                }
+
                 this.Close();
             }
             else

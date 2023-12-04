@@ -86,9 +86,32 @@ namespace ADC.Managers
         }
 
         //Modular Update Entry
-        public bool Update<T>(string Table, T Entry)
+        public int Update<T>(string Table, T Entry)
         {
-            return true;
+            List<string> properties = new List<string>();
+
+            List<PropertyInfo> propertyList = Entry.GetType().GetProperties().ToList();
+
+            foreach (PropertyInfo property in propertyList)
+            {
+                if (property.Name == "ID")
+                {
+                    continue;
+                }
+                
+                properties.Add(property.Name + " = @" + property.Name);
+            }
+
+
+            string propertiesString = "(" + String.Join(", ", properties) + ")";
+
+            var insertString = "UPDATE adcdb" + Table + " SET " + propertiesString + " WHERE ID = @ID";
+
+            sqldb.Open();
+            int rowsAffected = sqldb.Execute(insertString, Entry);
+            sqldb.Close();
+
+            return rowsAffected;
         }
 
         //Modular Read Entry with EQUALS
@@ -96,7 +119,7 @@ namespace ADC.Managers
         {
             var parameters = new { Key = key, Value = value, Table = Table };
 
-            string queryString = @"SELECT * FROM " + Table + " WHERE " + key + " = @Value";
+            string queryString = @"SELECT * FROM adcdb" + Table + " WHERE " + key + " = @Value";
 
             var toReturn = sqldb.Query<T>(queryString, parameters).ToList();
 

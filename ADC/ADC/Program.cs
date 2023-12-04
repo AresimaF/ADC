@@ -73,6 +73,8 @@ namespace ADC
                 Environment.Exit(0);
             }else
             {
+                //Force new password
+
                 Application.Run(mainScreen = new MainScreen());
             }
 
