@@ -71,7 +71,28 @@ namespace ADC.Screens.LoginScreen
                     newPassword.ShowDialog();
                 }
 
-                this.Close();
+                try
+                {
+                    if (Program.mainScreen is null)
+                    {
+
+                    }
+                    else
+                    {
+                        Program.mainScreen.Show();
+                    }
+                    
+                }
+                catch (Exception e)
+                {
+
+                }
+                
+
+                textUsername.Text = "";
+                textPassword.Text = "";
+
+                this.Hide();
             }
             else
             {
@@ -84,6 +105,11 @@ namespace ADC.Screens.LoginScreen
         {
             MessageBox.Show("Username or Password is incorrect.", "", MessageBoxButtons.OK);
             textPassword.Text = "";
+        }
+
+        private void LoginScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

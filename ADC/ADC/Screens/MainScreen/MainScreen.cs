@@ -1,5 +1,7 @@
 ﻿using ADC.Archive;
 using ADC.Managers;
+using ADC.Screens.LoginScreen;
+using ADC.Screens.NewPasswordScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,5 +22,17 @@ namespace ADC
             InitializeComponent();
         }
 
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewPasswordScreen newPassword = new NewPasswordScreen();
+            newPassword.ShowDialog();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.LoggedInUser = null;
+            Program.loginScreen.Show();
+            Hide();
+        }
     }
 }
