@@ -137,7 +137,7 @@ namespace ADC.Managers
         {
             
             sqldb.Open();
-            var toReturn = sqldb.Query<T>("SELECT * FROM " + Table).ToList();
+            var toReturn = sqldb.Query<T>("SELECT * FROM adcdb" + Table).ToList();
             sqldb.Close();
             
             return toReturn;

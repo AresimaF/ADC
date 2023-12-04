@@ -24,6 +24,9 @@ namespace ADC.Crafters
 
         object[] initialRoles;
 
+        List<string> UsersBlueprint = new List<string>();
+        List<string> RolesBlueprint = new List<string>();
+
         public DatabaseCrafter(SQLMaster parent)
         {
             sql = parent;
@@ -115,6 +118,12 @@ namespace ADC.Crafters
 
             tb.Create();
 
+
+            RolesBlueprint.Add("Name(" + DataType.NVarCharMax.Name + ")");
+            RolesBlueprint.Add("CreatedBy(" + DataType.NVarCharMax.Name + ")");
+            RolesBlueprint.Add("CreatedDate(" + DataType.DateTime.Name + ")");
+
+
             RoleGrimoire toAdd = new RoleGrimoire();
             
             toAdd.Name = "Admin";
@@ -191,6 +200,19 @@ namespace ADC.Crafters
 
             tb.Create();
 
+            UsersBlueprint.Add("Name(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("EmployeeID(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("Username(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("Password(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("Roles(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("NewPasswordRequired(" + DataType.Bit.Name + ")");
+            UsersBlueprint.Add("CreatedDate(" + DataType.DateTime.Name + ")");
+            UsersBlueprint.Add("CreatedBy(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("ModifiedDate(" + DataType.DateTime.Name + ")");
+            UsersBlueprint.Add("ModifiedBy(" + DataType.NVarCharMax.Name + ")");
+            UsersBlueprint.Add("LastLogin(" + DataType.DateTime.Name + ")");
+            UsersBlueprint.Add("Deactivated(" + DataType.Bit.Name + ")");
+
             SeedUser();
         }
 
@@ -229,6 +251,12 @@ namespace ADC.Crafters
 
         public void CraftBlueprints()
         {
+
+            BlueprintGrimoire Users = new BlueprintGrimoire() { TableName = "Users", TableColumns = String.Join(";", UsersBlueprint), RolesWithAccess = "Admin" };
+            BlueprintGrimoire Roles = new BlueprintGrimoire() { TableName = "Roles", TableColumns = String.Join(";", RolesBlueprint), RolesWithAccess = "Admin" };
+
+            sql.Create("Blueprint", Users);
+            sql.Create("Blueprint", Roles);
 
         }
     }

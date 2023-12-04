@@ -64,6 +64,9 @@ namespace ADC.Screens.LoginScreen
             if (Program.cryptMaster.verifyPassword(textPassword.Text, checkAgainst.Password) == true)
             {
                 Program.LoggedInUser = checkAgainst;
+                Program.LoggedInUser.LastLogin = DateTime.Now;
+
+                Program.sqlMaster.Update("Users", Program.LoggedInUser);
 
                 if (Program.LoggedInUser.NewPasswordRequired)
                 {
