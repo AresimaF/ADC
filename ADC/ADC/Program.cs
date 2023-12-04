@@ -24,6 +24,7 @@ namespace ADC
         public static IniMaster iniFile { get; private set; }
         public static SQLMaster sqlMaster { get; private set; }
         public static CryptMaster cryptMaster { get; private set; }
+        public static List<RoleGrimoire> roleList { get; set; }
 
         public static UserGrimoire LoggedInUser { get; set; }
 
@@ -73,7 +74,8 @@ namespace ADC
                 Environment.Exit(0);
             }else
             {
-                //Force new password
+
+                RefreshRoleList();
 
                 Application.Run(mainScreen = new MainScreen());
             }
@@ -101,6 +103,11 @@ namespace ADC
 
             ErrorScreen err = new ErrorScreen(e, true);
             err.ShowDialog();
+        }
+
+        public static void RefreshRoleList()
+        {
+            roleList = sqlMaster.List<RoleGrimoire>("Roles").ToList();
         }
 
         //private static void TimerEventProcessor(Object myObject, EventArgs myEventArgs)

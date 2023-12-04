@@ -362,9 +362,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive\BlueprintGrimoire.cs" />
     <Compile Include="Archive\RoleGrimoire.cs" />
     <Compile Include="Archive\UserGrimoire.cs" />
     <Compile Include="Crafters\DatabaseCrafter.cs" />
+    <Compile Include="Crafters\TableCrafter.cs" />
     <Compile Include="Managers\IniMaster.cs" />
     <Compile Include="Screens\ConnectionScreen\ConnectionScreen.cs">
       <SubType>Form</SubType>

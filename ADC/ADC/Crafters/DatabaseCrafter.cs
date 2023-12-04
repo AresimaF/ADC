@@ -83,7 +83,7 @@ namespace ADC.Crafters
 
             Program.loadingScreen.SetProgress(90);
 
-            //SeedUser();
+            CraftBlueprints();
 
             Program.loadingScreen.SetProgress(100);
             Program.loadingScreen.Close();
@@ -225,6 +225,11 @@ namespace ADC.Crafters
         {
             NewUserScreen seedScreen = new NewUserScreen(true, sql);
             seedScreen.ShowDialog();
+        }
+
+        public void CraftBlueprints()
+        {
+
         }
     }
 }

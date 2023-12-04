@@ -20,6 +20,8 @@ namespace ADC
         public MainScreen()
         {
             InitializeComponent();
+
+            RefreshMenu();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,6 +35,13 @@ namespace ADC
             Program.LoggedInUser = null;
             Program.loginScreen.Show();
             Hide();
+        }
+
+        public void RefreshMenu()
+        {
+            if (Program.LoggedInUser.Roles.Contains("Admin")) {
+
+            }
         }
     }
 }
