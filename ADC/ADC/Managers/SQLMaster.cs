@@ -103,7 +103,7 @@ namespace ADC.Managers
             }
 
 
-            string propertiesString = "(" + String.Join(", ", properties) + ")";
+            string propertiesString = String.Join(", ", properties);
 
             var insertString = "UPDATE adcdb" + Table + " SET " + propertiesString + " WHERE ID = @ID";
 
