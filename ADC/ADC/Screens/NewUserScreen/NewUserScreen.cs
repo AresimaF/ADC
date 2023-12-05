@@ -56,7 +56,7 @@ namespace ADC.Screens.NewUserScreen
 
         public void PopulateRoleList()
         {
-            roles = sql.List<RoleGrimoire>("adcdbRoles");
+            roles = sql.List<RoleGrimoire>("Roles");
             listRoles.Items.Clear();
 
             foreach (RoleGrimoire role in roles)

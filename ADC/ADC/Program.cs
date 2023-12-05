@@ -26,6 +26,8 @@ namespace ADC
         public static CryptMaster cryptMaster { get; private set; }
         public static List<RoleGrimoire> roleList { get; set; }
 
+        public static List<string> availableTables { get; set; }
+
         public static UserGrimoire LoggedInUser { get; set; }
 
         //static System.Windows.Forms.Timer programTime = new System.Windows.Forms.Timer();

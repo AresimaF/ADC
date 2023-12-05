@@ -39,9 +39,88 @@ namespace ADC
 
         public void RefreshMenu()
         {
-            if (Program.LoggedInUser.Roles.Contains("Admin")) {
+            List<BlueprintGrimoire> blueprintsRaw = Program.sqlMaster.List<BlueprintGrimoire>("Blueprint");
+            Dictionary<string, BlueprintGrimoire> blueprintsIndexed = new Dictionary<string, BlueprintGrimoire>();
 
+            foreach(BlueprintGrimoire blueprint in blueprintsRaw)
+            {
+                blueprintsIndexed.Add(blueprint.TableName, blueprint);
             }
+
+            if (LockCheck(blueprintsIndexed["Users"]))
+            {
+                menuStripManagementUsers.Visible = true;
+                menuStripManagementUsers.Enabled = true;
+            }
+            else
+            {
+                menuStripManagementUsers.Visible = false;
+                menuStripManagementUsers.Enabled = false;
+            }
+
+            if (LockCheck(blueprintsIndexed["Roles"]))
+            {
+                menuStripManagementRoles.Visible = true;
+                menuStripManagementRoles.Enabled = true;
+            }
+            else
+            {
+                menuStripManagementRoles.Visible = false;
+                menuStripManagementRoles.Enabled = false;
+            }
+
+            if (LockCheck(blueprintsIndexed["Modules"]))
+            {
+                menuStripManagementModules.Visible = true;
+                menuStripManagementModules.Enabled = true;
+            }
+            else
+            {
+                menuStripManagementModules.Visible = false;
+                menuStripManagementModules.Enabled = false;
+            }
+            
+            blueprintsIndexed.Remove("Users");
+            blueprintsIndexed.Remove("Roles");
+            blueprintsIndexed.Remove("Modules");
+
+
+            foreach(KeyValuePair<string, BlueprintGrimoire> bp in blueprintsIndexed)
+            {
+                if (LockCheck(bp.Value))
+                {
+                    ToolStripMenuItem newItem = new ToolStripMenuItem();
+
+                    newItem.Text = bp.Key;
+                    newItem.Click += new EventHandler(OpenModule);
+
+                    menuStripModules.DropDownItems.Add(newItem);
+                }
+            }
+
+        }
+
+        private bool LockCheck(BlueprintGrimoire blueprint)
+        {
+            string[] userRoles = Program.LoggedInUser.Roles.Split(',');
+
+            foreach(string role in userRoles)
+            {
+                if (blueprint.RolesWithAccess.Contains(role))
+                {
+                    return true;
+                }
+            }
+
+
+            return false;
+        }
+
+        private void OpenModule(Object eventObject, EventArgs myEventArgs)
+        {   
+            ToolStripMenuItem sender = (ToolStripMenuItem)eventObject;
+
+            //Open dynamic window for the particular table 
         }
     }
 }

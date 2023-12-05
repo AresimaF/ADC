@@ -28,24 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripManagement = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.menuStripManagementUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripManagementRoles = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripManagementModules = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripModules = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userToolStripMenuItem,
-            this.menuStripManagement});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(822, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuMain";
+            this.menuStripManagement,
+            this.menuStripModules});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(822, 24);
+            this.menuStrip.TabIndex = 1;
+            this.menuStrip.Text = "menuMain";
             // 
             // userToolStripMenuItem
             // 
@@ -59,37 +64,65 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // menuStripManagement
             // 
+            this.menuStripManagement.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripManagementUsers,
+            this.menuStripManagementRoles,
+            this.menuStripManagementModules});
             this.menuStripManagement.Name = "menuStripManagement";
             this.menuStripManagement.Size = new System.Drawing.Size(90, 20);
             this.menuStripManagement.Text = "Management";
+            // 
+            // menuStripManagementUsers
+            // 
+            this.menuStripManagementUsers.Name = "menuStripManagementUsers";
+            this.menuStripManagementUsers.Size = new System.Drawing.Size(180, 22);
+            this.menuStripManagementUsers.Text = "Users";
+            // 
+            // menuStripManagementRoles
+            // 
+            this.menuStripManagementRoles.Name = "menuStripManagementRoles";
+            this.menuStripManagementRoles.Size = new System.Drawing.Size(180, 22);
+            this.menuStripManagementRoles.Text = "Roles";
+            // 
+            // menuStripManagementModules
+            // 
+            this.menuStripManagementModules.Name = "menuStripManagementModules";
+            this.menuStripManagementModules.Size = new System.Drawing.Size(180, 22);
+            this.menuStripManagementModules.Text = "Modules";
+            // 
+            // menuStripModules
+            // 
+            this.menuStripModules.Name = "menuStripModules";
+            this.menuStripModules.Size = new System.Drawing.Size(65, 20);
+            this.menuStripModules.Text = "Modules";
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 462);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "MainScreen";
             this.Text = "ADC - Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,11 +130,15 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuStripManagement;
+        private System.Windows.Forms.ToolStripMenuItem menuStripManagementUsers;
+        private System.Windows.Forms.ToolStripMenuItem menuStripManagementRoles;
+        private System.Windows.Forms.ToolStripMenuItem menuStripManagementModules;
+        private System.Windows.Forms.ToolStripMenuItem menuStripModules;
     }
 }
 

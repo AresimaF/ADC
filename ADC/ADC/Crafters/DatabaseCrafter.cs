@@ -26,6 +26,7 @@ namespace ADC.Crafters
 
         List<string> UsersBlueprint = new List<string>();
         List<string> RolesBlueprint = new List<string>();
+        List<string> ModulesBlueprint = new List<string>();
 
         public DatabaseCrafter(SQLMaster parent)
         {
@@ -240,6 +241,10 @@ namespace ADC.Crafters
             col.Nullable = false;
             tb.Columns.Add(col);
 
+            RolesBlueprint.Add("TableName(" + DataType.NVarCharMax.Name + ")");
+            RolesBlueprint.Add("TableColumns(" + DataType.NVarCharMax.Name + ")");
+            RolesBlueprint.Add("RolesWithAccess(" + DataType.NVarCharMax.Name + ")");
+
             tb.Create();
         }
 
@@ -254,9 +259,11 @@ namespace ADC.Crafters
 
             BlueprintGrimoire Users = new BlueprintGrimoire() { TableName = "Users", TableColumns = String.Join(";", UsersBlueprint), RolesWithAccess = "Admin" };
             BlueprintGrimoire Roles = new BlueprintGrimoire() { TableName = "Roles", TableColumns = String.Join(";", RolesBlueprint), RolesWithAccess = "Admin" };
+            BlueprintGrimoire Modules = new BlueprintGrimoire() { TableName = "Modules", TableColumns = String.Join(";", RolesBlueprint), RolesWithAccess = "Admin" };
 
             sql.Create("Blueprint", Users);
             sql.Create("Blueprint", Roles);
+            sql.Create("Blueprint", Modules);
 
         }
     }
