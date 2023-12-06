@@ -90,6 +90,7 @@
             this.menuStripManagementUsers.Name = "menuStripManagementUsers";
             this.menuStripManagementUsers.Size = new System.Drawing.Size(180, 22);
             this.menuStripManagementUsers.Text = "Users";
+            this.menuStripManagementUsers.Click += new System.EventHandler(this.menuStripManagementUsers_Click);
             // 
             // menuStripManagementRoles
             // 

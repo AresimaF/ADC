@@ -5,6 +5,7 @@ using ADC.Screens.Error;
 using ADC.Screens.LoginScreen;
 using ADC.Screens.SplashScreen;
 using ADC.Screens.SystemScreens.Loading;
+using ADC.Screens.UserManagementScreen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace ADC
         public static IniMaster iniFile { get; private set; }
         public static SQLMaster sqlMaster { get; private set; }
         public static CryptMaster cryptMaster { get; private set; }
+        public static DataConversionMaster dataConverter { get; private set; }
         public static List<RoleGrimoire> roleList { get; set; }
 
         public static List<string> availableTables { get; set; }
@@ -55,8 +57,9 @@ namespace ADC
             //programTime.Interval = 1000;
             //programTime.Start();
 
+            //Essential, non-linked masters
             iniFile = new IniMaster();
-            
+            dataConverter = new DataConversionMaster();            
             cryptMaster = new CryptMaster();
 
             if (iniFile.KeyExists("ConnectionString") == false)

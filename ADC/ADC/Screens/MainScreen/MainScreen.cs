@@ -2,6 +2,7 @@
 using ADC.Managers;
 using ADC.Screens.LoginScreen;
 using ADC.Screens.NewPasswordScreen;
+using ADC.Screens.UserManagementScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,9 @@ namespace ADC
 {
     public partial class MainScreen : Form
     {
+
+        public List<object> OpenScreens { get; set; } = new List<object>();
+
         public MainScreen()
         {
             InitializeComponent();
@@ -47,10 +51,13 @@ namespace ADC
                 blueprintsIndexed.Add(blueprint.TableName, blueprint);
             }
 
+            menuStripManagement.Enabled = false;
+
             if (LockCheck(blueprintsIndexed["Users"]))
             {
                 menuStripManagementUsers.Visible = true;
                 menuStripManagementUsers.Enabled = true;
+                menuStripManagement.Enabled = true;
             }
             else
             {
@@ -62,6 +69,7 @@ namespace ADC
             {
                 menuStripManagementRoles.Visible = true;
                 menuStripManagementRoles.Enabled = true;
+                menuStripManagement.Enabled = true;
             }
             else
             {
@@ -73,6 +81,7 @@ namespace ADC
             {
                 menuStripManagementModules.Visible = true;
                 menuStripManagementModules.Enabled = true;
+                menuStripManagement.Enabled = true;
             }
             else
             {
@@ -121,6 +130,15 @@ namespace ADC
             ToolStripMenuItem sender = (ToolStripMenuItem)eventObject;
 
             //Open dynamic window for the particular table 
+        }
+
+        private void menuStripManagementUsers_Click(object sender, EventArgs e)
+        {
+            UserManagementScreen newScreen = new UserManagementScreen(this);
+
+            OpenScreens.Add(newScreen);
+
+            newScreen.Show();
         }
     }
 }
