@@ -52,6 +52,13 @@ namespace ADC.Screens.UserManagementScreen
             UserList = Program.dataConverter.ListToDataTable(rawList);
 
             UserList.Columns["ID"].ReadOnly = true;
+            UserList.Columns["Password"].ReadOnly = true;
+            UserList.Columns["CreatedDate"].ReadOnly = true;
+            UserList.Columns["CreatedBy"].ReadOnly = true;
+            UserList.Columns["ModifiedDate"].ReadOnly = true;
+            UserList.Columns["ModifiedBy"].ReadOnly = true;
+            UserList.Columns["LastLogin"].ReadOnly = true;
+
 
             dataUsers.DataSource = UserList;
             dataUsers.Refresh();
