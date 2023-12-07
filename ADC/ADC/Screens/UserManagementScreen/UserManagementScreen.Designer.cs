@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dataUsers = new System.Windows.Forms.DataGridView();
             this.userGrimoireBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGrimoireBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -48,11 +49,22 @@
             // 
             this.userGrimoireBindingSource.DataSource = typeof(ADC.Archive.UserGrimoire);
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(27, 393);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(90, 45);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // UserManagementScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.dataUsers);
             this.Name = "UserManagementScreen";
             this.Text = "UserManagementScreen";
@@ -66,5 +78,6 @@
 
         private System.Windows.Forms.DataGridView dataUsers;
         private System.Windows.Forms.BindingSource userGrimoireBindingSource;
+        private System.Windows.Forms.Button buttonSave;
     }
 }

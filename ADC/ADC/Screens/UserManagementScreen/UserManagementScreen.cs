@@ -70,7 +70,11 @@ namespace ADC.Screens.UserManagementScreen
             parent.OpenScreens.Remove(this);
         }
 
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            List<UserGrimoire> getList = Program.dataConverter.DataTableToList<UserGrimoire>(UserList);
 
-        
+            
+        }
     }
 }
