@@ -97,10 +97,13 @@ namespace ADC.Screens.NewUserScreen
             
             currentUser = new UserGrimoire();
 
-            buttonCancel.Enabled = false;
-            textEmployeeID.Enabled = false;
-            textName.Enabled = false;
-            listRoles.Enabled = false;
+            currentUser.CreatedBy = Program.LoggedInUser.Username;
+            currentUser.ModifiedBy = Program.LoggedInUser.Username;
+
+            buttonCancel.Enabled = true;
+            textEmployeeID.Enabled = true;
+            textName.Enabled = true;
+            listRoles.Enabled = true;
 
             LoadValues();
 
@@ -137,6 +140,8 @@ namespace ADC.Screens.NewUserScreen
             HashPassword();
 
             List<string> userRoles = new List<string>();
+
+            listRoles.Refresh();
 
             foreach (object item in listRoles.CheckedItems)
             {

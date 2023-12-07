@@ -1,4 +1,5 @@
 ﻿using ADC.Archive;
+using KellermanSoftware.CompareNetObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,18 +51,13 @@ namespace ADC.Screens.UserManagementScreen
             
             UserList = Program.dataConverter.ListToDataTable(rawList);
 
+            UserList.Columns["ID"].ReadOnly = true;
+
             dataUsers.DataSource = UserList;
             dataUsers.Refresh();
         }
 
-        public void SaveChanges()
-        {
-            // TODO:
-            // -Add a conversion to the converterMaster for object > row and vice versa
-            // -Run a check between current database user list and edited list, update as changes found
-            // -Refresh datagrid
-
-        }
+        
 
         
 
@@ -72,9 +68,69 @@ namespace ADC.Screens.UserManagementScreen
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            List<UserGrimoire> getList = Program.dataConverter.DataTableToList<UserGrimoire>(UserList);
-
             
+            
+            List<UserGrimoire> tableList = Program.dataConverter.DataTableToList<UserGrimoire>(UserList);
+
+            List<UserGrimoire> databaseList = Program.sqlMaster.List<UserGrimoire>("Users");
+
+            int changeCount = 0;
+
+            CompareLogic compare = new CompareLogic()
+            {
+                Config = new ComparisonConfig()
+                {
+                    TypesToIgnore = new List<Type>()
+                    {
+                        typeof(DateTime)
+                    },
+                    MembersToIgnore = new List<string>
+                    {
+                        "ID"
+                    }
+                    //add other configurations
+                }
+            }; 
+
+            foreach (UserGrimoire user in tableList)
+            {
+                UserGrimoire checkAgainst = databaseList.Where(x => x.Username == user.Username).FirstOrDefault();
+
+                ComparisonResult result = compare.Compare(user, checkAgainst);
+
+                user.ID = checkAgainst.ID;
+
+                if (!result.AreEqual)
+                {
+                    user.ModifiedDate = DateTime.Now;
+                    user.ModifiedBy = Program.LoggedInUser.Username;
+                    int x = Program.sqlMaster.Update("Users", user);
+                    changeCount++;
+                }
+            }
+            
+            UserList.AcceptChanges();
+            RefreshUsers();
+
+            MessageBox.Show("Changes saved! Total users changed: " + changeCount.ToString(), "", MessageBoxButtons.OK);
+        }
+
+        private void buttonUndo_Click(object sender, EventArgs e)
+        {
+            UserList.RejectChanges();
+
+            RefreshUsers();
+        }
+
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+            NewUserScreen.NewUserScreen newUser = new NewUserScreen.NewUserScreen(false);
+            newUser.Show();
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshUsers();
         }
     }
 }

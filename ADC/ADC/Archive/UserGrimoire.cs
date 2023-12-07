@@ -29,7 +29,7 @@ namespace ADC.Archive
             EmployeeID = "000000";
             Username = "Username";
             Password = "Password";
-            Roles = "";
+            Roles = "User";
             NewPasswordRequired = true;
             CreatedDate = DateTime.Now;
             CreatedBy = "None";
