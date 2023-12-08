@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.dataUsers = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.userGrimoireBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonUndo = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.userGrimoireBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGrimoireBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -42,6 +42,7 @@
             // dataUsers
             // 
             this.dataUsers.AllowUserToAddRows = false;
+            this.dataUsers.AllowUserToDeleteRows = false;
             this.dataUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataUsers.Location = new System.Drawing.Point(153, 12);
             this.dataUsers.Name = "dataUsers";
@@ -57,10 +58,6 @@
             this.buttonSave.Text = "Save Changes";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // userGrimoireBindingSource
-            // 
-            this.userGrimoireBindingSource.DataSource = typeof(ADC.Archive.UserGrimoire);
             // 
             // buttonUndo
             // 
@@ -91,6 +88,10 @@
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // userGrimoireBindingSource
+            // 
+            this.userGrimoireBindingSource.DataSource = typeof(ADC.Archive.UserGrimoire);
             // 
             // UserManagementScreen
             // 
