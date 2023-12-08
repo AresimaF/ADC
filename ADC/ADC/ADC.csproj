@@ -396,6 +396,12 @@
     <Compile Include="Screens\NewUserScreen\NewUserScreen.Designer.cs">
       <DependentUpon>NewUserScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\RoleManagementScreen\RoleManagementScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\RoleManagementScreen\RoleManagementScreen.Designer.cs">
+      <DependentUpon>RoleManagementScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\SystemScreens\Error\ErrorScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -453,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\NewUserScreen\NewUserScreen.resx">
       <DependentUpon>NewUserScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\RoleManagementScreen\RoleManagementScreen.resx">
+      <DependentUpon>RoleManagementScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\SystemScreens\Error\ErrorScreen.resx">
       <DependentUpon>ErrorScreen.cs</DependentUpon>

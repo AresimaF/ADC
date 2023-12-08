@@ -97,6 +97,7 @@
             this.menuStripManagementRoles.Name = "menuStripManagementRoles";
             this.menuStripManagementRoles.Size = new System.Drawing.Size(180, 22);
             this.menuStripManagementRoles.Text = "Roles";
+            this.menuStripManagementRoles.Click += new System.EventHandler(this.menuStripManagementRoles_Click);
             // 
             // menuStripManagementModules
             // 

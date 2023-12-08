@@ -2,6 +2,7 @@
 using ADC.Managers;
 using ADC.Screens.LoginScreen;
 using ADC.Screens.NewPasswordScreen;
+using ADC.Screens.RoleManagementScreen;
 using ADC.Screens.UserManagementScreen;
 using System;
 using System.Collections.Generic;
@@ -135,6 +136,15 @@ namespace ADC
         private void menuStripManagementUsers_Click(object sender, EventArgs e)
         {
             UserManagementScreen newScreen = new UserManagementScreen(this);
+
+            OpenScreens.Add(newScreen);
+
+            newScreen.Show();
+        }
+
+        private void menuStripManagementRoles_Click(object sender, EventArgs e)
+        {
+            RoleManagementScreen newScreen = new RoleManagementScreen(this);
 
             OpenScreens.Add(newScreen);
 
