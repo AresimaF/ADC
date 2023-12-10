@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ADC.Screens.NewUserScreen
 {
@@ -17,12 +18,15 @@ namespace ADC.Screens.NewUserScreen
         UserGrimoire currentUser;
         List<RoleGrimoire> roles;
         SQLMaster sql;
+        MainScreen parent;
 
-        public NewUserScreen(bool isSeedUser)
+        public NewUserScreen(bool isSeedUser, MainScreen parentScreen)
         {
             InitializeComponent();
 
             sql = Program.sqlMaster;
+
+            parent = parentScreen;
 
             PopulateRoleList();
 
@@ -34,6 +38,8 @@ namespace ADC.Screens.NewUserScreen
             {
                 NormalUser();
             }
+
+            this.parent = parent;
         }
 
         public NewUserScreen(bool isSeedUser, SQLMaster inputSQL)
@@ -107,6 +113,8 @@ namespace ADC.Screens.NewUserScreen
 
             LoadValues();
 
+            this.FormClosing += new FormClosingEventHandler(OnFormClosing);
+
         }
 
         private void LoadValues()
@@ -173,6 +181,11 @@ namespace ADC.Screens.NewUserScreen
             listRoles.Items.Clear();
 
             this.Close();
+        }
+
+        public void OnFormClosing(object sender, FormClosingEventArgs args)
+        {
+            parent.OpenScreens.Remove(this);
         }
     }
 }

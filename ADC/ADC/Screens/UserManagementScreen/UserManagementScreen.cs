@@ -107,7 +107,7 @@ namespace ADC.Screens.UserManagementScreen
 
                 user.ID = checkAgainst.ID;
 
-                if (!result.AreEqual)
+                if (!result.AreEqual && user.ID != Program.LoggedInUser.ID)
                 {
                     user.ModifiedDate = DateTime.Now;
                     user.ModifiedBy = Program.LoggedInUser.Username;
@@ -131,7 +131,10 @@ namespace ADC.Screens.UserManagementScreen
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            NewUserScreen.NewUserScreen newUser = new NewUserScreen.NewUserScreen(false);
+            NewUserScreen.NewUserScreen newUser = new NewUserScreen.NewUserScreen(false, parent);
+
+            parent.OpenScreens.Add(this);
+
             newUser.Show();
         }
 

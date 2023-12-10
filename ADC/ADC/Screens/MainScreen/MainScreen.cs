@@ -37,6 +37,16 @@ namespace ADC
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int loops = OpenScreens.Count;
+
+
+            for (int i = 0; i < loops; i++)
+            {
+                Form screen = (Form)OpenScreens[0];
+                
+                screen.Close();
+            }
+
             Program.LoggedInUser = null;
             Program.loginScreen.Show();
             Hide();
