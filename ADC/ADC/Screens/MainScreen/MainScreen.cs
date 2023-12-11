@@ -26,7 +26,9 @@ namespace ADC
         {
             InitializeComponent();
 
-            RefreshMenu();
+            RefreshPermissions += new EventHandler(RemoteRefresh);
+
+            //RefreshMenu();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,13 +122,18 @@ namespace ADC
 
         }
 
+        public void RemoteRefresh(object sender, EventArgs args)
+        {
+            RefreshMenu();
+        }
+
         private bool LockCheck(BlueprintGrimoire blueprint)
         {
             string[] userRoles = Program.LoggedInUser.Roles.Split(',');
 
             foreach(string role in userRoles)
             {
-                if (blueprint.RolesWithAccess.Contains(role))
+                if (blueprint.RolesWithAccess.Contains(role) && role.Length > 1)
                 {
                     return true;
                 }
@@ -160,5 +167,7 @@ namespace ADC
 
             newScreen.Show();
         }
+
+        public event EventHandler RefreshPermissions;
     }
 }

@@ -142,5 +142,7 @@ namespace ADC.Screens.UserManagementScreen
         {
             RefreshUsers();
         }
+
+        
     }
 }

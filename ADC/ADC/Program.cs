@@ -115,6 +115,8 @@ namespace ADC
             roleList = sqlMaster.List<RoleGrimoire>("Roles").ToList();
         }
 
+        public static event EventHandler RefreshPermissions;
+
         //private static void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
         //{
         //    programTicks++;

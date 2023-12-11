@@ -95,6 +95,8 @@ namespace ADC.Screens.LoginScreen
                 textUsername.Text = "";
                 textPassword.Text = "";
 
+                RefreshPermissions.Invoke(this, EventArgs.Empty);
+
                 this.Hide();
             }
             else
@@ -114,5 +116,7 @@ namespace ADC.Screens.LoginScreen
         {
             Application.Exit();
         }
+
+        public event EventHandler RefreshPermissions;
     }
 }
