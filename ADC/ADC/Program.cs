@@ -69,9 +69,12 @@ namespace ADC
 
             sqlMaster = new SQLMaster();
 
-            splashScreen.Hide();
+            splashScreen.Hide();           
 
             loginScreen = new LoginScreen();
+
+            mainScreen = new MainScreen();
+
             loginScreen.ShowDialog();
 
             if (LoggedInUser is null || LoggedInUser.Username == "Thane Doe")
@@ -82,7 +85,7 @@ namespace ADC
 
                 RefreshRoleList();
 
-                Application.Run(mainScreen = new MainScreen());
+                Application.Run(mainScreen);
             }
 
             
