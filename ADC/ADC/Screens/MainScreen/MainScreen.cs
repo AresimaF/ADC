@@ -26,7 +26,7 @@ namespace ADC
         {
             InitializeComponent();
 
-            RefreshPermissions += new EventHandler(RemoteRefresh);
+            Program.loginScreen.RefreshPermissions += new EventHandler(RemoteRefresh);
 
             //RefreshMenu();
         }
@@ -168,6 +168,5 @@ namespace ADC
             newScreen.Show();
         }
 
-        public event EventHandler RefreshPermissions;
     }
 }

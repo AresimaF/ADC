@@ -13,6 +13,10 @@ namespace ADC.Screens.LoginScreen
 {
     public partial class LoginScreen : Form
     {
+        public event EventHandler RefreshPermissions;
+
+        //public delegate void EventHandler(object sender, EventArgs e);
+        //public event EventHandler RefreshPermissions;
         public LoginScreen()
         {
             InitializeComponent();
@@ -95,7 +99,7 @@ namespace ADC.Screens.LoginScreen
                 textUsername.Text = "";
                 textPassword.Text = "";
 
-                RefreshPermissions.Invoke(this, EventArgs.Empty);
+                RefreshPermissions?.Invoke(this, EventArgs.Empty);
 
                 this.Hide();
             }
@@ -117,6 +121,7 @@ namespace ADC.Screens.LoginScreen
             Application.Exit();
         }
 
-        public event EventHandler RefreshPermissions;
+        
+
     }
 }
