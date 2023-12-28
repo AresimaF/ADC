@@ -69,7 +69,7 @@ namespace ADC
 
             sqlMaster = new SQLMaster();
 
-            splashScreen.Hide();           
+            splashScreen.Hide();
 
             loginScreen = new LoginScreen();
 

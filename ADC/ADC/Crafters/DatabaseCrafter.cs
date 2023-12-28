@@ -17,16 +17,16 @@ namespace ADC.Crafters
     internal class DatabaseCrafter
     {
         SQLMaster sql;
-        SqlConnection db;
+        //SqlConnection db;
         Server server;
 
         string connectionString = Program.iniFile.Read("ConnectionString");
 
-        object[] initialRoles;
+        //object[] initialRoles;
 
         List<string> UsersBlueprint = new List<string>();
         List<string> RolesBlueprint = new List<string>();
-        List<string> ModulesBlueprint = new List<string>();
+        //List<string> ModulesBlueprint = new List<string>();
 
         public DatabaseCrafter(SQLMaster parent)
         {
